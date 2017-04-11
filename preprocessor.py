@@ -13,7 +13,9 @@ def process(path):
             f = json.load(w)
 
         content = re.sub("<[^>]*>", "", f["content"])
+        content = re.sub(r'([^\s\w]|_)+', '', content)
         title = re.sub("<[^>]*>", "", f["title"])
+        title = re.sub(r'([^\s\w]|_)+', '', title)
 
         f = {"title": title, "content": content}
 
@@ -25,7 +27,7 @@ def process(path):
 def main( ):
     process(macro)
     process(bio)
-    
+
     return
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ def index_type( ):
     return stop, stem
 
 
-def create_settings(stopwords, stemming, stop, stem):
+def create_settings(stop, stem):
     fltr = ["lowercase"]
 
     if(stem):
@@ -30,34 +30,45 @@ def create_settings(stopwords, stemming, stop, stem):
         fltr.append("my_stopwords")
 
     settings = {
-        "mappings": {
-            "books": {
-                "properties":{
-                    "content": {
-                        "type": "text",
-                        "analyzer": "my_analyzer",
-                        "search_analyzer": "my_analyzer"
-                    },
-                    "title": {
-                        "type": "text",
-                        "analyzer": "my_analyzer",
-                        "search_analyzer": "my_analyzer"
-                    }
-                }
-            }
-        },
         "settings": {
             "analysis": {
                 "filter": {
-                    "my_stopwords": stopwords,
-                    "my_stem": stemming
+                    "my_stopwords": {
+                        "type": "stop",
+                        "stopwords": "_english_"
+                    },
+                    "my_stem": {
+                        "type": "stemmer",
+                        "name": "english"
+                    }
                 },
                 "analyzer": {
+                    "my_search_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "standard",
+                        "filter": ["lowercase", "my_stopwords"]
+                    },
                     "my_analyzer": {
                         "type": "custom",
                         "char_filter": ["html_strip"],
                         "tokenizer": "standard",
                         "filter": fltr
+                    }
+                }
+            }
+        },
+        "mappings": {
+            "books": {
+                "properties":{
+                    "content": {
+                        "type": "text",
+                        "analyzer": "my_analyzer"
+                        # "search_analyzer": "my_search_analyzer"
+                    },
+                    "title": {
+                        "type": "text",
+                        "analyzer": "my_analyzer"
+                        # "search_analyzer": "my_search_analyzer"
                     }
                 }
             }
@@ -99,35 +110,27 @@ def bulk(es):
 def main( ):
     es = Elasticsearch( )
 
-    stemming = {}
-    stopwords = {}
-
     if not es.indices.exists(FLAGS.index):
         stop, stem = index_type( )
-
-        if(stop):
-            stopwords["type"] = "stop"
-            stopwords["stopwords"] = "_english_"
-
-        if(stem):
-            stemming["type"] = "snowball"
-            stemming["language"] = "English"
-
-        settings = create_settings(stopwords, stemming, stop, stem)
+        settings = create_settings(stop, stem)
 
         print("creating '%s' index..." % FLAGS.index)
         res = es.indices.create(index = FLAGS.index, body = settings)
-        print("response: '%s'" % res)
 
-        print("bulk indexing...")
         bulk(es)
 
-    res = es.search(index = FLAGS.index, size = 100, body = {"query": {"query_string": {"fields": ["content", "title"], "query": FLAGS.query}}})
+    res = es.search(index = FLAGS.index, size = 200, body = {"query": { \
+                                                                "query_string": { \
+                                                                    "fields": ["content", "title"], \
+                                                                    # "analyzer": q_analyzer,\
+                                                                    "query": FLAGS.query \
+                                                                    }
+                                                                }
+                                                            })
 
-    #print(res['hits']['hits'])
-    #print("response: '%s'" % res)
-
+    print("total hits %d" % res['hits']['total'])
     print("documents returned:")
+
     for hit in res['hits']['hits']:
         print(hit["_id"])
 

@@ -1,9 +1,0 @@
-Notes:
-	- /docbase folder contains 10 astrophysics articles collected from arxiv
-	- /extracted folder contains fixed and open information extracted from /docbase articles
-	- CoreNLP was used to extract open information from articles abstracts
-	- Regular expression were used to extract fixed fields such as Authors, Title, Subjects, Comments and Links
-	- The project was coded in Java using Eclipse IDE
-
-Authors:	
-	{nlj, gcc}@cin.ufpe.br

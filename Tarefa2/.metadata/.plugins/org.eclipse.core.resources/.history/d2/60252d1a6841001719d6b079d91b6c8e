@@ -1,0 +1,56 @@
+import edu.stanford.nlp.ie.util.RelationTriple;
+import edu.stanford.nlp.simple.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+public class InformationExtraction {
+	
+	private static BufferedReader br;
+	private static BufferedWriter bw;
+
+	public static void main(String[] args) throws IOException{
+		
+		for(int i = 1; i <= 10; i++){
+			
+			try {
+				br = new BufferedReader(new FileReader("/home/nilson/git/web_mining/Tarefa2/docbase/file" + i));
+				bw = new BufferedWriter(new FileWriter("/home/nilson/git/web_mining/Tarefa2/extracted/file" + i));
+
+				wrapper();
+				openIE();
+				
+				br.close();
+				bw.close();
+				
+			} 
+			catch (FileNotFoundException e) {
+				System.out.println("docbase/file" + i + " not found");
+			}
+		}
+	}
+	
+	public static void wrapper(){
+		
+	}
+	
+	public static void openIE() throws IOException{
+		
+		Document doc = new Document(br.readLine());
+		
+		for(Sentence sent: doc.sentences()){
+			
+			for(RelationTriple triple: sent.openieTriples()){
+				
+				bw.write("(" + triple.subjectGloss() + "; "
+			            	 + triple.relationGloss() + "; "
+			                 + triple.objectGloss() + ")\n");
+			}
+		}
+	}
+}

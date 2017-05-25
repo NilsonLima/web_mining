@@ -1,0 +1,6 @@
+arXiv:1705.03917
+Online Calibration of Phasor Measurement Unit Using Density-Based Spatial Clustering
+Xinan Wang, Di Shi, Zhiwei Wang, Chunlei Xu, Qibing Zhang, Xiaohu Zhang, Zhe Yu
+Comments: Accepted by IEEE Transactions on Power Delivery, this version is the preprint
+Subjects: Systems and Control (cs.SY)
+Data quality of Phasor Measurement Unit (PMU) is receiving increasing attention as it has been identified as one of the limiting factors that affect many wide-area measurement system (WAMS) based applications. In general, existing PMU calibration methods include offline testing and model based approaches. However, in practice, the effectiveness of both is limited due to the very strong assumptions employed. This paper presents a novel framework for online bias error detection and calibration of PMU measurement using density-based spatial clustering of applications with noise (DBSCAN) based on much relaxed assumptions. With a new problem formulation, the proposed data mining based methodology is applicable across a wide spectrum of practical conditions and one side-product of it is more accurate transmission line parameters for EMS database and protective relay settings. Case studies demonstrate the effectiveness of the proposed approach.

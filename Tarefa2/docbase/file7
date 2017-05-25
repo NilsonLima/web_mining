@@ -1,0 +1,5 @@
+arXiv:1705.03918
+Causal Inference with Two Versions of Treatment
+Raiden B. Hasegawa, Sameer K. Deshpande, Dylan S. Small, Paul R. Rosenbaum
+Subjects: Methodology (stat.ME)
+Causal effects are commonly defined as comparisons of the potential outcomes under treatment and control, but this definition is threatened by the possibility that the treatment or control condition is not well-defined, existing instead in more than one version. A simple, widely applicable analysis is proposed to address the possibility that the treatment or control condition exists in two versions with two different treatment effects. This analysis loses no power in the main comparison of treatment and control, provides additional information about version effects, and controls the family-wise error rate in several comparisons. The method is motivated and illustrated using an on-going study of the possibility that repeated head trauma in high school football causes an increase in risk of early on-set dementia.

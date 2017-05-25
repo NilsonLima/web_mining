@@ -1,0 +1,28 @@
+Authors: Tatsuya Narikawa, Masato Kaneyama, Hideyuki Tagoshi
+Title: Optimal follow-up observations of gravitational wave events with small optical telescopes
+Subjects: General Relativity and Quantum Cosmology (gr-qc)
+Comments: 10 pages, 5 figures
+Link: http://arxiv.org/abs/1705.04008
+
+discuss(We, direction for observations)
+discuss(We, optimal direction for follow-up observations)
+discuss(We, direction)
+discuss(We, optimal direction for observations)
+discuss(We, optimal direction)
+discuss(We, direction for follow-up observations)
+observe(aperture telescopes, optical/infrared counterparts)
+observe(aperture telescopes, counterparts)
+is(it, difficult)
+observe(small aperture telescopes, counterparts)
+is(it, where difficult)
+observe(small aperture telescopes, optical/infrared counterparts)
+inferred by(probability, two gravitational wave detectors)
+restricted to(distance, nearby region)
+restricted to(distance, region)
+prior restricted to(distance, region)
+prior restricted to(distance, nearby region)
+of(LIGO-Virgo, three events)
+is(inclination angle, when edge-on)
+is(inclination angle, nearly edge-on)
+is(inclination angle, when nearly edge-on)
+is(inclination angle, edge-on)

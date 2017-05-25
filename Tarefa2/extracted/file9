@@ -1,0 +1,32 @@
+Authors: Seung-Sup B. Lee, Jan von Delft, Andreas Weichselbaum
+Title: Doublon-holon origin of the subpeaks at the Hubbard band edges
+Subjects: Strongly Correlated Electrons (cond-mat.str-el); Mesoscale and Nanoscale Physics (cond-mat.mes-hall)
+Comments: null
+Link: http://arxiv.org/abs/1705.03910
+
+emerge at(subpeaks, inner edges)
+emerge in(subpeaks, metallic phase)
+emerge at(subpeaks, edges)
+emerge at(subpeaks, edges of Hubbard bands)
+emerge at(subpeaks, inner edges of Hubbard bands)
+emerge in(subpeaks, phase)
+originate from(subpeaks, low-energy effective interaction)
+originate from(subpeaks, low-energy interaction of pairs)
+originate(subpeaks, investigating)
+originate from(subpeaks, low-energy interaction)
+originate from(subpeaks, interaction of pairs)
+originate from(subpeaks, effective interaction of pairs)
+contribute to(correlation functions, subpeaks)
+originate from(subpeaks, low-energy effective interaction of doublon-holon pairs)
+originate from(subpeaks, effective interaction)
+originate from(subpeaks, effective interaction of doublon-holon pairs)
+originate from(subpeaks, low-energy effective interaction of pairs)
+originate from(subpeaks, low-energy interaction of doublon-holon pairs)
+originate from(subpeaks, interaction of doublon-holon pairs)
+originate from(subpeaks, interaction)
+provide(DMFT calculations, consistent results)
+provide(DMFT calculations, results)
+become In(subpeaks, 3)
+become(subpeaks, more pronounced)
+become(subpeaks, pronounced)
+become In(subpeaks, SU)

@@ -1,0 +1,32 @@
+Authors: Mitchell Stern, Jacob Andreas, Dan Klein
+Title: A Minimal Span-Based Neural Constituency Parser
+Subjects: Computation and Language (cs.CL)
+Comments: To appear in ACL 2017
+Link: http://arxiv.org/abs/1705.03919
+
+present(we, minimal model for constituency parsing)
+present model In(we, work)
+present(we, model)
+present(we, model for constituency parsing)
+present(we, neural model)
+present(we, minimal neural model)
+present(we, minimal model)
+present(we, neural model for constituency parsing)
+present(we, minimal neural model for constituency parsing)
+admits(model, novel top-down inference algorithm)
+admits(model, greedy top-down inference algorithm)
+also admits(model, top-down inference algorithm)
+also admits(model, inference algorithm)
+admits(model, novel inference algorithm)
+admits(model, greedy inference algorithm)
+also admits(model, novel inference algorithm)
+also admits(model, novel top-down inference algorithm)
+also admits(model, novel greedy top-down inference algorithm)
+admits(model, inference algorithm)
+admits(model, top-down inference algorithm)
+also admits(model, greedy inference algorithm)
+admits(model, novel greedy inference algorithm)
+admits(model, novel greedy top-down inference algorithm)
+also admits(model, novel greedy inference algorithm)
+also admits(model, greedy top-down inference algorithm)
+are(prediction schemes, competitive)

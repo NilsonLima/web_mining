@@ -6,24 +6,9 @@ import nltk
 import re
 
 from nltk.corpus import stopwords
+from nltk.tokenize import TweetTokenizer
+
 from sklearn.utils import shuffle
-
-def decode(data):
-    """
-        decode function to ascii code
-        @data: string data that contains tweet text
-    """
-
-    #ignore unknown byte code
-    decoded = data.encode( ).decode("ascii", "ignore")
-
-    #remove '\n'
-    decoded = re.sub(r'\n', "", decoded)
-
-    #remove '\r'
-    decoded = re.sub(r'\r', "", decoded)
-
-    return decoded
 
 def preprocess(tweet):
     """
@@ -35,25 +20,25 @@ def preprocess(tweet):
     tweet = tweet.lower( )
 
     #remove url's
-    tweet = re.sub(r'((www\.[^\s]+)|(http[s]?://[^\s]+))', 'URL', tweet)
+    tweet = re.sub(r'((www\.[^\s]+)|(http[s]?://[^\s]+))', ' URL ', tweet)
 
     #remove mentions
-    tweet = re.sub(r'@[^\s]+', 'ATUSER', tweet)
+    tweet = re.sub(r'@[^\s]+', ' ATUSER ', tweet)
 
-    #replace <3 symbol with 'HEART'
-    tweet = re.sub(r'&lt;3', ' HEART ', tweet)
-
-    #remove &, > and < symbols
-    tweet = re.sub(r'(&amp;)|(&gt;)|(&lt;)', ' ', tweet)
-
-    #replace happy emoticons with 'SMILE'
-    tweet = re.sub(r'(?:[:=;][oO\-]?[D\)\]\]pP])', ' SMILE ', tweet)
-
-    #replace sad emoticions with 'SAD'
-    tweet = re.sub(r'(?:[:=;][oO\-]?[(\/\]\\oO])', ' SAD ', tweet)
-
-    #remove punctuations
-    tweet = re.sub('[%s]' % re.escape(string.punctuation), ' ', tweet)
+    # #replace <3 symbol with 'HEART'
+    # tweet = re.sub(r'&lt;3', ' HEART ', tweet)
+    #
+    # #remove &, > and < symbols
+    # tweet = re.sub(r'(&amp;)|(&gt;)|(&lt;)', ' ', tweet)
+    #
+    # #replace happy emoticons with 'SMILE'
+    # tweet = re.sub(r'(?:[:=;][oO\-]?[D\)\]\]pP])', ' SMILE ', tweet)
+    #
+    # #replace sad emoticions with 'SAD'
+    # tweet = re.sub(r'(?:[:=;][oO\-]?[(\/\]\\oO])', ' SAD ', tweet)
+    #
+    # #remove punctuations
+    # tweet = re.sub('[%s]' % re.escape(string.punctuation), ' ', tweet)
 
     #remove additional white spaces
     tweet = re.sub(r'[\s]+', ' ', tweet)
@@ -63,29 +48,17 @@ def preprocess(tweet):
 
     return tweet
 
-def tokenize(tweet):
-    """
-        tokenize preprocessed tweet and remove stopwords
-        @tweet: preprocessed tweet
-    """
-
-    words = stopwords.words("english") + ["ATUSER", "URL", "RT", "via"]
-
-    tokenized =  nltk.word_tokenize(tweet)
-    tokenized = [t for t in tokenized if t not in words]
-    tokenized = [t for t in tokenized if t.isalpha( ) == True]
-
-    return tokenized
 
 def process(df, path):
+    labels = [ ]
     tweets = [ ]
     for i, row in df.iterrows( ):
         tweet = preprocess(row.text)
-        tweet = tokenize(tweet)
-        tweets.append((tweet, row.airline_sentiment))
+        tweets.append(tweet)
+        labels.append(row.airline_sentiment)
 
     with open(path, "wb") as f:
-        pickle.dump(tweets, f)
+        pickle.dump([tweets, labels], f)
 
     return
 
@@ -94,8 +67,7 @@ def main( ):
         main function
     """
 
-    df = pd.read_csv(csvpath, encoding = "unicode-escape")
-    df.text = df.text.map(decode)
+    df = pd.read_csv(csvpath, encoding = "UTF-8")
 
     df_positive = shuffle(df.loc[df.airline_sentiment == "positive"][["text", "airline_sentiment"]])
     df_neutral = shuffle(df.loc[df.airline_sentiment == "neutral"][["text", "airline_sentiment"]])
@@ -125,7 +97,7 @@ if __name__ == '__main__':
 
     train_bound = int(train * count)
 
-    csvpath = "tweets_original.csv"
+    csvpath = "Tweets.csv"
     train_pickle = "train.pickle"
     test_pickle = "test.pickle"
 

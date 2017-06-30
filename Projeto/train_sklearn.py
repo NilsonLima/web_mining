@@ -59,6 +59,9 @@ def main( ):
     print(metric)
     print(np.mean(predicted == test_data[1]))
 
+    with open(clf_pickle, "wb") as f:
+        pickle.dump(clf, f)
+
     # params = {"classifier__C": [.01, .1, 1, 10, 100]}
     #
     # gs = GridSearchCV(clf, params, verbose = 2, n_jobs = -1)
@@ -72,5 +75,6 @@ if __name__ == '__main__':
     train_pickle = "train.pickle"
     test_pickle = "test.pickle"
     sent_pickle = "sentiment.pickle"
+    clf_pickle = "clf.pickle"
 
     main( )

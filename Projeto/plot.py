@@ -80,17 +80,15 @@ def plot(dates, y):
         @rtype: void
     """
 
-    print(y)
+    x = [datetime.strptime(d, "%Y-%m-%d").date( ) for d in dates]
+    xfmt = mdates.DateFormatter("%a %d")
 
-    # x = [datetime.strptime(d, "%Y-%m-%d").date( ) for d in dates]
-    # xfmt = mdates.DateFormatter("%a %d")
-    #
-    # fig, ax = plt.subplots( )
-    # ax.stackplot(x, y, colors = ["#9ecae1", "#6baed6", "#3182bd"])
-    # ax.xaxis.set_major_formatter(xfmt)
-    #
-    # plt.xticks(rotation = -30)
-    # plt.show( )
+    fig, ax = plt.subplots( )
+    ax.stackplot(x, y, colors = ["#9ecae1", "#6baed6", "#3182bd"])
+    ax.xaxis.set_major_formatter(xfmt)
+
+    plt.xticks(rotation = -30)
+    plt.show( )
 
     return
 

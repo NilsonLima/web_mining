@@ -19,6 +19,8 @@ def tokenize(tweet):
     """
         tokenize preprocessed tweet and remove stopwords
         @tweet: preprocessed tweet
+        @ret: tokenized tweet
+        @rtype: list of strings
     """
 
     tokenizer = TweetTokenizer(strip_handles = True, reduce_len = True)
@@ -33,6 +35,7 @@ def tokenize(tweet):
 def main( ):
     """
         main function
+        @rtype: void
     """
 
     train_data = [ ]

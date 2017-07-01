@@ -46,6 +46,8 @@ def airline(name, classifier = None):
     sentiment = airline.airline_sentiment.tolist( )
     sentiment = set(sentiment)
 
+    print(sentiment)
+
     sentiments = [ ]
 
     if classifier == None :
@@ -78,15 +80,17 @@ def plot(dates, y):
         @rtype: void
     """
 
-    x = [datetime.strptime(d, "%Y-%m-%d").date( ) for d in dates]
-    xfmt = mdates.DateFormatter("%a %d")
+    print(y)
 
-    fig, ax = plt.subplots( )
-    ax.stackplot(x, y, colors = ["#9ecae1", "#6baed6", "#3182bd"])
-    ax.xaxis.set_major_formatter(xfmt)
-
-    plt.xticks(rotation = -30)
-    plt.show( )
+    # x = [datetime.strptime(d, "%Y-%m-%d").date( ) for d in dates]
+    # xfmt = mdates.DateFormatter("%a %d")
+    #
+    # fig, ax = plt.subplots( )
+    # ax.stackplot(x, y, colors = ["#9ecae1", "#6baed6", "#3182bd"])
+    # ax.xaxis.set_major_formatter(xfmt)
+    #
+    # plt.xticks(rotation = -30)
+    # plt.show( )
 
     return
 

@@ -14,6 +14,8 @@ def preprocess(tweet):
     """
         preprocess a tweet eliminating urls, mentions and other stuff
         @tweet: raw tweet text
+        @ret: preprocessed tweet
+        @rtype: string
     """
 
     #lower tweet text
@@ -50,6 +52,14 @@ def preprocess(tweet):
 
 
 def process(df, path):
+    """
+        preprocess all tweets from data frame
+        @df: tweets data frame object
+        @path: string path to save tweets and labels
+        @ret: list of list of tweets and respective labels
+        @rtype: void
+    """
+
     labels = [ ]
     tweets = [ ]
     for i, row in df.iterrows( ):
@@ -65,6 +75,7 @@ def process(df, path):
 def main( ):
     """
         main function
+        @rtype: void
     """
 
     df = pd.read_csv(csvpath, encoding = "UTF-8")

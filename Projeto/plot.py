@@ -72,7 +72,7 @@ def airline(name, classifier = None):
 
     return dates, sentiments
 
-def plot(dates, y):
+def plot(dates, y, airline):
     """
         plot stacked area
         @x: dates
@@ -81,13 +81,20 @@ def plot(dates, y):
     """
 
     x = [datetime.strptime(d, "%Y-%m-%d").date( ) for d in dates]
-    xfmt = mdates.DateFormatter("%a %d")
+    xfmt = mdates.DateFormatter("%d-%m-%y (%a)")
 
     fig, ax = plt.subplots( )
-    ax.stackplot(x, y, colors = ["#9ecae1", "#6baed6", "#3182bd"])
+    #ax.stackplot(x, y, colors = ["#9ecae1", "#6baed6", "#3182bd"])
+    ax.plot(x, y[0], label='neutral', color='gray')
+    ax.plot(x, y[1], label='positive', color='blue')
+    ax.plot(x, y[2], label='negative', color='red')
+    ax.legend()
     ax.xaxis.set_major_formatter(xfmt)
 
-    plt.xticks(rotation = -30)
+    plt.xticks(rotation = -15)
+    plt.title("{}'s mentions sentiment analysis".format(airline))
+    plt.xlabel('Days of the week')
+    plt.ylabel('Number of tweets')
     plt.show( )
 
     return
@@ -101,8 +108,10 @@ def main( ):
     with open(clf_pickle, "rb") as f:
         clf = pickle.load(f)
 
+    #import ipdb; ipdb.set_trace()
+
     x, y = airline("Virgin America", clf)
-    plot(x, y)
+    plot(x, y, 'Virgin America')
 
     return
 

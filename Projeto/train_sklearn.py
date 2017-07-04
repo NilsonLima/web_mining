@@ -53,14 +53,16 @@ def main( ):
                                    max_features = 10000)),
                     ('classifier', MultinomialNB( ))])
 
-    clf.fit(train_data[0], train_data[1])
+    clf = clf.fit(train_data[0], train_data[1])
     predicted = clf.predict(test_data[0])
 
     metric = metrics.classification_report(test_data[1], predicted, \
                                            target_names = ['negative', 'neutral', 'positive']);
 
+    accuracy = np.mean(predicted == test_data[1])
+
     print(metric)
-    print(np.mean(predicted == test_data[1]))
+    print("accuracy %g" % accuracy)
 
     with open(clf_pickle, "wb") as f:
         pickle.dump(clf, f)

@@ -1,4 +1,5 @@
 import pickle
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -38,7 +39,7 @@ def airline(name, classifier = None):
 
     df = pd.read_csv(tweetspath, encoding = "UTF-8")
     airline = df.loc[df.airline == name][["tweet_created", "text", "airline_sentiment"]]
-    
+
     dates = airline.tweet_created.tolist( )
     dates = set([d.split( )[0] for d in dates])
     dates  = sorted(dates, key = lambda d: datetime.strptime(d, '%Y-%m-%d'))
@@ -105,18 +106,26 @@ def main( ):
         @rtype: void
     """
 
-    with open(clf_pickle, "rb") as f:
-        clf = pickle.load(f)
+    clf = None
+
+    if FLAGS.clf:
+        with open(clf_pickle, "rb") as f:
+            clf = pickle.load(f)
 
     airline_name = input('Insert one of the following airlines to be plotted:\n'
                              'Virgin America, United, Southwest, Delta, US Airways, American\n')
-        
+
     x, y = airline(airline_name, clf)
     plot(x, y, airline_name)
 
     return
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser( )
+    parser.add_argument('--clf', type = bool, default = True, help = "Chosse if classifier will be used.")
+
+    FLAGS, unparsed = parser.parse_known_args( )
+
     tweetspath = "Tweets.csv"
     clf_pickle = "clf.pickle"
 

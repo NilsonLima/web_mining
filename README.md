@@ -4,7 +4,7 @@
 
 Document Retrieval project over Amazon books descriptions corpus. 
 This corpus contains abstracts from political leaders and macroeconomy topics.
-This assignment was coded in python using ElastcSearch client API.
+This assignment was coded in python using ElasticSearch client API.
 
 ## Second Assigment
 
